@@ -55,7 +55,35 @@ public class ParityChecker {
    public static final class ParityCheckerException extends Exception {
        ParityCheckerException(String msg) { super(msg); }
    }
+    
+   public ParityChecker(ImmutableMap<String, Intetger> wordToValueMap) {
+       this.wordToValueMap = wordToValueMap;
+   }
+
+  /**
+    * @param input - whitespace-delimited input stream of words that represent
+    * numeric values.
+    * @return - true if the sum of the input numbers is even, false otherwise.
+    * @throws ParityCheckerException - if one of the tokens is not a recognized
+    * number.
+    */
+   public bool sumIsEven(String input) {
+       // Count the number of odd elements, and check whether it is even.
+       return toNumbers(input).filter(num -> num % 2 == 1).count() == 0;
+   }
    
+   /**
+    * @param input - whitespace-delimited input stream of words that represent
+    * numeric values.
+    * @return - true if the product of the input numbers is even, false
+    * otherwise.
+    * @throws ParityCheckerException - if one of the tokens is not a recognized
+    * number.
+    */
+   public bool productIsEven(String input) {
+       // Check whether any number is even.
+       return toNumbers(input).any(num -> num % 2 == 0);
+   }
     /**
     * Validates that token is in the word map.
     * @return - the input, unmodified, if it is validated
@@ -78,31 +106,6 @@ public class ParityChecker {
        .stream()
        .map(ParityChecker::validateToken)
        .map(wordToValueMap::get);
-   }
-   
-   /**
-    * @param input - whitespace-delimited input stream of words that represent
-    * numeric values.
-    * @return - true if the sum of the input numbers is even, false otherwise.
-    * @throws ParityCheckerException - if one of the tokens is not a recognized
-    * number.
-    */
-   public bool sumIsEven(String input) {
-       // Count the number of odd elements, and check whether it is even.
-       return toNumbers(input).filter(num -> num % 2 == 1).count() == 0;
-   }
-   
-   /**
-    * @param input - whitespace-delimited input stream of words that represent
-    * numeric values.
-    * @return - true if the product of the input numbers is even, false
-    * otherwise.
-    * @throws ParityCheckerException - if one of the tokens is not a recognized
-    * number.
-    */
-   public bool sumIsEven(String input) {
-       // Check whether any number is even.
-       return toNumbers(input).any(num -> num % 2 == 0);
    }
    
    public void test__product_allOddIsOdd() {
