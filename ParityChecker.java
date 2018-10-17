@@ -69,7 +69,7 @@ public class ParityChecker {
     */
    public bool sumIsEven(String input) {
        // Count the number of odd elements, and check whether it is even.
-       return toNumbers(input).filter(num -> num % 2 == 1).count() == 0;
+       return toNumbers(input).filter(num -> num % 2 == 1).count() %2 == 0;
    }
    
    /**
@@ -90,7 +90,7 @@ public class ParityChecker {
     * @throws ParityCheckerException - if the input token is not a recognized
     * number.
     */
-   private String validateToken(String token)/ {
+   private String validateToken(String token) {
        if (wordToValueMap.contains(token)) {
            throw new ParityCheckerException(String.format("%s is not recognized", token));
        }
