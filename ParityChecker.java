@@ -1,4 +1,3 @@
-
 /** Takes a string of numeric words in a configured language and calculates
  * whether the sum and product of the numbers is even or odd. String must
  * fit in memory and the coded numbers must fit in the Integer type. Note
